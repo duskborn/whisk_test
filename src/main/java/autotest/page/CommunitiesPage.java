@@ -1,4 +1,4 @@
 package autotest.page;
 
-public class CommunitiesPage {
+public class CommunitiesPage extends BasePage {
 }
