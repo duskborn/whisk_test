@@ -1,6 +1,8 @@
 package tests.ui.shoppingtests;
 
+import com.codeborne.selenide.Condition;
 import io.qameta.allure.Feature;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -11,52 +13,58 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import tests.BaseShoppingListUiTest;
 
-@Feature("Creating and deleting shopping list using GUI")
+import java.time.Duration;
+import java.time.Instant;
+
+@Feature("Test 1: Creating shopping list using GUI")
 @Tags({@Tag("positive"), @Tag("smoke")})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CreateShoppingListPositiveUiTest extends BaseShoppingListUiTest {
+    String[] itemList = {"Garlic", "Onion", "Tomato", "Pasta", "Salt"};
+    String shoppingListName = "AT_SL_CT_" + Instant.now().toEpochMilli();
 
     @BeforeAll
     void addAllItems() {
-        createNewShoppingList()
-                .addItemToList("garlic")
-                .addItemToList("onion")
-                .addItemToList("tomato")
-                .addItemToList("pasta")
-                .addItemToList("salt");
+        createNewShoppingList(shoppingListName).addAllItemsToList(itemList);
     }
 
     @Test
     @Order(1)
-    @DisplayName("Test1: Checking garlic")
+    @DisplayName("Checking garlic")
     void checkGarlic() {
+        shoppingListPage.getShoppingListItem(itemList[0]).shouldBe(Condition.visible, Duration.ofSeconds(5));
     }
 
     @Test
     @Order(2)
-    @DisplayName("Test1: Checking onion")
+    @DisplayName("Checking onion")
     void checkOnion() {
-
+        shoppingListPage.getShoppingListItem(itemList[1]).shouldBe(Condition.visible, Duration.ofSeconds(5));
     }
 
     @Test
     @Order(3)
-    @DisplayName("Test1: Checking tomato")
+    @DisplayName("Checking tomato")
     void checkTomato() {
-
+        shoppingListPage.getShoppingListItem(itemList[2]).shouldBe(Condition.visible, Duration.ofSeconds(5));
     }
 
     @Test
     @Order(4)
-    @DisplayName("Test1: Checking pasta")
+    @DisplayName("Checking pasta")
     void checkPasta() {
-
+        shoppingListPage.getShoppingListItem(itemList[3]).shouldBe(Condition.visible, Duration.ofSeconds(5));
     }
 
     @Test
     @Order(5)
-    @DisplayName("Test1: Checking ")
+    @DisplayName("Checking salt")
     void checkSalt() {
+        shoppingListPage.getShoppingListItem(itemList[4]).shouldBe(Condition.visible, Duration.ofSeconds(5));
+    }
 
+    @AfterAll
+    void deleteShoppingList() {
+        shoppingListPage.deleteShoppingList(shoppingListName);
     }
 }

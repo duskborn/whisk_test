@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Tag;
 public class BaseShoppingListUiTest extends BaseUiTest{
     protected ShoppingListPage shoppingListPage = null;
 
-    protected ShoppingListPage createNewShoppingList() {
+    protected ShoppingListPage createNewShoppingList(String shoppingListName) {
         shoppingListPage = defaultPage.mainMenu.goToShoppingList();
-        return shoppingListPage.createNewShoppingList();
+        return shoppingListPage.createNewShoppingList(shoppingListName);
     }
 }

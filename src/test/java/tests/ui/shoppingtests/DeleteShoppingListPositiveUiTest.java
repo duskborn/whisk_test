@@ -11,19 +11,22 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import tests.BaseShoppingListUiTest;
 
-@Feature("Creating and deleting shopping list using GUI")
+import java.time.Instant;
+
+@Feature("Test 2: Deleting shopping list using GUI")
 @Tags({@Tag("positive"), @Tag("smoke")})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DeleteShoppingListPositiveUiTest extends BaseShoppingListUiTest {
+    String shoppingListName = "AT_SL_DT_" + Instant.now().toEpochMilli();
 
     @BeforeAll
     void addAllItems() {
-        createNewShoppingList();
+        createNewShoppingList(shoppingListName);
     }
 
     @Test
     @Order(1)
-    @DisplayName("Test2: Delete Shopping list using GUI")
+    @DisplayName("Delete Shopping list using GUI")
     void deleteList() {
 
     }
