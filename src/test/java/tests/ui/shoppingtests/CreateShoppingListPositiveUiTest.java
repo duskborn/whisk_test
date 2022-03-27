@@ -16,7 +16,7 @@ import tests.BaseShoppingListUiTest;
 import java.time.Duration;
 import java.time.Instant;
 
-@Feature("Test 1: Creating shopping list using GUI")
+@Feature("Test 1: Creating Shopping List using GUI")
 @Tags({@Tag("positive"), @Tag("smoke")})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CreateShoppingListPositiveUiTest extends BaseShoppingListUiTest {
@@ -66,5 +66,6 @@ public class CreateShoppingListPositiveUiTest extends BaseShoppingListUiTest {
     @AfterAll
     void deleteShoppingList() {
         shoppingListPage.deleteShoppingList(shoppingListName);
+        checkListIsDeleted(shoppingListName);
     }
 }

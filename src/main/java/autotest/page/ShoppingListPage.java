@@ -72,4 +72,9 @@ public class ShoppingListPage extends BasePage {
         Thread.sleep(5000);
         return page(ShoppingListPage.class);
     }
+
+    public ShoppingListPage checkListIsDeleted(String listName) {
+        getShoppingListList(listName).shouldNotBe(Condition.exist);
+        return page(ShoppingListPage.class);
+    }
 }

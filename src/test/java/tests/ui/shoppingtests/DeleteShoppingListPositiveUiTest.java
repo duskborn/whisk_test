@@ -13,7 +13,7 @@ import tests.BaseShoppingListUiTest;
 
 import java.time.Instant;
 
-@Feature("Test 2: Deleting shopping list using GUI")
+@Feature("Test 2: Deleting Shopping List using GUI")
 @Tags({@Tag("positive"), @Tag("smoke")})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DeleteShoppingListPositiveUiTest extends BaseShoppingListUiTest {
@@ -26,8 +26,15 @@ public class DeleteShoppingListPositiveUiTest extends BaseShoppingListUiTest {
 
     @Test
     @Order(1)
-    @DisplayName("Delete Shopping list using GUI")
+    @DisplayName("Delete Shopping List using GUI")
     void deleteList() {
+        shoppingListPage.deleteShoppingList(shoppingListName);
+    }
 
+    @Test
+    @Order(2)
+    @DisplayName("Check Shopping List is deleted")
+    void checkListIsDeleted() {
+        checkListIsDeleted(shoppingListName);
     }
 }
