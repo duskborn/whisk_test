@@ -13,15 +13,15 @@ public class TestLoggerJUnitListener implements TestWatcher, AfterAllCallback, B
     private static int testCounter = 0;
 
     public void afterAll(ExtensionContext context) throws Exception {
-        log.info("ЗАВЕРШЕН ЗАПУСК НАБОРА ТЕСТОВ. КОЛИЧЕСТВО ЗАПУЩЕНЫХ ТЕСТОВ = {}", testCounter);
+        log.info("TEST SUIT IS FINISHED. TESTS QUANTITY = {}", testCounter);
     }
 
     public void beforeAll(ExtensionContext context) throws Exception {
-        log.info("ЗАПУЩЕН НАБОР ТЕСТОВ");
+        log.info("TEST SUIT IS STARTED");
     }
 
     public void beforeTestExecution(ExtensionContext context) throws Exception {
-        log.info("ЗАПУЩЕН ТЕСТ № {}: '{}' С ТЕГАМИ {}", ++testCounter, context.getDisplayName(), context.getTags());
+        log.info("STARTED TEST № {}: '{}' WITH TAGS {}", ++testCounter, context.getDisplayName(), context.getTags());
         log.info("TestLocation = {}#{}", context.getRequiredTestClass(), context.getRequiredTestMethod());
     }
 }
