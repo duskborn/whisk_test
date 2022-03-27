@@ -16,14 +16,14 @@ import tests.BaseUiTest;
 public class ShoppingListPositiveUiTest extends BaseUiTest {
     @Test
     @Order(1)
-    @DisplayName("Create Shopping list")
+    @DisplayName("Create Shopping list using GUI")
     void createList() {
 
     }
 
     @Test
     @Order(2)
-    @DisplayName("Delete Shopping list")
+    @DisplayName("Delete Shopping list using GUI")
     void deleteList() {
 
     }

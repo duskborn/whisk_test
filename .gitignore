@@ -2,3 +2,4 @@
 *.iml
 target
 allure-results
+src/main/resources/auth.txt

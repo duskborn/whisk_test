@@ -33,5 +33,4 @@ public abstract class BaseTest extends AbstractJUnit4SpringContextTests {
         fail(errorText);
         logger.error(errorText);
     }
-
 }

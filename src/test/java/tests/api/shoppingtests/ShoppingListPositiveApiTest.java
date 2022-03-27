@@ -16,14 +16,14 @@ import tests.BaseShoppingListApiTest;
 public class ShoppingListPositiveApiTest extends BaseShoppingListApiTest {
     @Test
     @Order(1)
-    @DisplayName("Create Shopping list")
+    @DisplayName("Create Shopping list using API")
     void createList() {
 
     }
 
     @Test
     @Order(2)
-    @DisplayName("Delete Shopping list")
+    @DisplayName("Delete Shopping list using API")
     void deleteList() {
 
     }
