@@ -62,4 +62,17 @@ public abstract class BaseShoppingListApiTest extends BaseApiTest {
     protected Response postShoppingList(PostShoppingListModel postShoppingListModel) {
         return postShoppingList(postShoppingListModel.name, postShoppingListModel.primary);
     }
+
+    protected Response deleteShoppingList(String id) {
+        Response response = given()
+                .spec(requestSpecification)
+                .baseUri(getEndpoint())
+                .when()
+                .delete("/list/v2/" + id);
+        response
+                .then()
+                .assertThat()
+                .spec(responseSpecification);
+        return response;
+    }
 }

@@ -1,5 +1,6 @@
 package tests.api.shoppingtests;
 
+import autotest.model.GetSLErrorResponse;
 import autotest.model.SLSuccessResponse;
 import autotest.model.PostShoppingListModel;
 import com.google.gson.JsonObject;
@@ -26,22 +27,24 @@ public class ShoppingListPositiveApiTest extends BaseShoppingListApiTest {
     private final PostShoppingListModel slModel = new PostShoppingListModel(shoppingListName, false);
     private SLSuccessResponse postSLSuccessResponse;
     private SLSuccessResponse getSLSuccessResponse;
+    private String id;
 
     @Test
     @Order(1)
     @DisplayName("Create Shopping List using POST-request")
     void createList() {
         Response response = postShoppingList(slModel);
-        checkStatusCode(response,200);
+        checkStatusCode(response, 200);
         postSLSuccessResponse = response.body().as(SLSuccessResponse.class);
+        id = postSLSuccessResponse.list.id;
     }
 
     @Test
     @Order(2)
     @DisplayName("GET Shopping List")
     void getList() {
-        Response response = getShoppingList(postSLSuccessResponse.list.id);
-        checkStatusCode(response,200);
+        Response response = getShoppingList(id);
+        checkStatusCode(response, 200);
         getSLSuccessResponse = response.body().as(SLSuccessResponse.class);
     }
 
@@ -49,7 +52,7 @@ public class ShoppingListPositiveApiTest extends BaseShoppingListApiTest {
     @Order(3)
     @DisplayName("Check id in response")
     void checkIdInResponse() {
-        assertEquals(postSLSuccessResponse.list.id, getSLSuccessResponse.list.id);
+        assertEquals(id, getSLSuccessResponse.list.id);
     }
 
     @Test
@@ -64,9 +67,13 @@ public class ShoppingListPositiveApiTest extends BaseShoppingListApiTest {
     @Order(5)
     @DisplayName("Delete Shopping List using API")
     void deleteList() {
-        //2. Delete Shopping list by id DELETE: /list/v2/{id}
-        //3. Get Shopping List by id: GET /list/v2/{id}
-        //4. Verify that code response = 200
-        //5. Verify that response message is 'shoppingList.notFound'
+        Response deleteResponse = deleteShoppingList(id);
+        checkStatusCode(deleteResponse, 200);
+        Response getResponse = getShoppingList(id);
+        checkStatusCode(getResponse, 400);
+        GetSLErrorResponse getSLErrorResponse = getResponse.body().as(GetSLErrorResponse.class);
+        assertEquals("shoppingList.notFound", getSLErrorResponse.code);
+        assertEquals("LIST_ERROR_NOT_FOUND", getSLErrorResponse.errorCode);
+        assertEquals("Shopping list not found", getSLErrorResponse.message);
     }
 }
