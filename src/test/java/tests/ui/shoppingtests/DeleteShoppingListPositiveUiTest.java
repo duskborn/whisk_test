@@ -17,7 +17,7 @@ import java.time.Instant;
 @Tags({@Tag("positive"), @Tag("smoke")})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DeleteShoppingListPositiveUiTest extends BaseShoppingListUiTest {
-    String shoppingListName = "AT_SL_DT_" + Instant.now().toEpochMilli();
+    private final String shoppingListName = "AT_SL_DT_" + Instant.now().toEpochMilli();
 
     @BeforeAll
     void addAllItems() {

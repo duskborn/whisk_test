@@ -20,8 +20,8 @@ import java.time.Instant;
 @Tags({@Tag("positive"), @Tag("smoke")})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CreateShoppingListPositiveUiTest extends BaseShoppingListUiTest {
-    String[] itemList = {"Garlic", "Onion", "Tomato", "Pasta", "Salt"};
-    String shoppingListName = "AT_SL_CT_" + Instant.now().toEpochMilli();
+    private final String[] itemList = {"Garlic", "Onion", "Tomato", "Pasta", "Salt"};
+    private final String shoppingListName = "AT_SL_CT_" + Instant.now().toEpochMilli();
 
     @BeforeAll
     void addAllItems() {

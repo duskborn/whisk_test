@@ -1,6 +1,6 @@
 package tests;
 
-import autotest.model.ShoppingListModel;
+import autotest.model.PostShoppingListModel;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
@@ -59,7 +59,7 @@ public abstract class BaseShoppingListApiTest extends BaseApiTest {
         return postShoppingList(createPostBody(name, primary));
     }
 
-    protected Response postShoppingList(ShoppingListModel shoppingListModel) {
-        return postShoppingList(shoppingListModel.name, shoppingListModel.primary);
+    protected Response postShoppingList(PostShoppingListModel postShoppingListModel) {
+        return postShoppingList(postShoppingListModel.name, postShoppingListModel.primary);
     }
 }
